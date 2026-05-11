@@ -1,136 +1,50 @@
 # Travel Planning Agent
 
-A lightweight travel-planning demo built with LangChain and Groq. The app reads a travel request, extracts trip details, calls a set of travel tools, and returns a structured itinerary-style report.
+A simple LangChain + Groq demo that turns a travel request into a structured trip plan.
 
-## What It Does
+## Highlights
 
-- Understands user travel requests such as destination, nights, number of travelers, and budget
-- Uses tools to retrieve weather, flight, hotel, attraction, and travel-tip information
-- Estimates total trip cost in Turkish lira
-- Produces a polished final travel report
-- Supports follow-up updates during the same conversation, such as changing the budget or guest count
-
-## Features
-
-- Console-based interactive experience
-- Travel-only request filtering
-- Preprocessing chain for extracting trip parameters
-- Tool-based travel planning agent
-- Postprocessing chain for formatting the final response
-- Sample prompts for quick testing
-- English CLI output, with Turkish command aliases kept for convenience
-
-## Project Structure
-
-```text
-Travel Planning/
-├── 01_destination_database.py
-├── 02_travel_tools.py
-├── 03_travel_agent.py
-├── 04_preprocessing_chain.py
-├── 05_postprocessing_chain.py
-├── 06_main_agent.py
-├── .env.example
-├── requirements.txt
-└── README.md
-```
-
-## Requirements
-
-- Python 3.10 or newer
-- A Groq API key
+- Extracts destination, nights, travelers, and budget from natural language
+- Uses sample tools for weather, flights, hotels, attractions, and trip cost
+- Supports follow-up updates in the same chat
+- Runs from the terminal
 
 ## Setup
 
-1. Clone the repository and open the project folder.
-2. Create and activate a virtual environment.
+```bash
+pip install -r requirements.txt
+```
 
-   PowerShell:
-   ```powershell
-   .\.venv\Scripts\Activate.ps1
-   ```
+Create a `.env` file:
 
-   CMD:
-   ```bat
-   .venv\Scripts\activate.bat
-   ```
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
 
-   macOS/Linux:
-   ```bash
-   source .venv/bin/activate
-   ```
-
-3. Install dependencies.
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Create a `.env` file from the example file.
-
-   ```bash
-   copy .env.example .env
-   ```
-
-5. Add your Groq API key to `.env`.
-
-   ```env
-   GROQ_API_KEY=your_groq_api_key_here
-   ```
-
-## Run the App
+## Run
 
 ```bash
 python 06_main_agent.py
 ```
 
-## Usage
+## Commands
 
-When the app starts, it shows example requests and accepts travel-related prompts in natural language.
+- `help` or `yardim`
+- `samples` or `ornekler`
+- `example 1` or `ornek 1`
+- `1` to `8`
+- `reset` or `sifirla`
+- `exit` or `quit` or `cikis`
 
-Example:
+## Project Files
 
-```text
-I want a 5-day trip to Antalya in July for 2 people with a total budget of 75000 TL. Include weather, hotels, and places to visit.
-```
+- `01_destination_database.py` - sample travel data
+- `02_travel_tools.py` - LangChain tools
+- `03_travel_agent.py` - agent setup
+- `04_preprocessing_chain.py` - request parsing
+- `05_postprocessing_chain.py` - response formatting
+- `06_main_agent.py` - interactive CLI
 
-### Built-in Commands
+## Note
 
-- `help` or `yardim` - Show usage tips
-- `samples` or `ornekler` - Show sample questions
-- `example 1` or `ornek 1` - Run sample question 1
-- `1` - `8` - Select a sample question directly
-- `reset` or `sifirla` - Clear conversation memory
-- `exit` or `quit` or `cikis` - Close the app
-
-## Included Tools
-
-- `get_weather_forecast` - Returns sample weather data for a city
-- `check_flight_prices` - Returns sample flight price, duration, and airline data
-- `search_hotels` - Lists hotels that fit a nightly budget
-- `get_attractions_and_activities` - Suggests places to visit
-- `calculate_trip_cost` - Estimates flight, hotel, and daily spending
-- `get_travel_tips_recommendations` - Returns destination-specific travel tips
-
-## Notes
-
-- This project uses sample destination data instead of live travel APIs.
-- The app is designed as a demo and can be extended with real-world data sources later.
-- Follow-up messages can update the previous plan if the app detects a budget or trip-detail change.
-- The repository is intentionally flat and easy to read so it can be published as a small engineering demo without extra scaffolding.
-
-## Example Workflow
-
-1. Enter a travel request.
-2. The preprocessing chain extracts trip details.
-3. The agent calls the relevant travel tools.
-4. The postprocessing chain formats the final report.
-5. The app prints a final summary, including used tools and cost context.
-
-## GitHub Publishing Checklist
-
-- `.env` is ignored so secrets stay out of the repository
-- `.env.example` documents the required environment variable
-- Dependencies are listed in `requirements.txt`
-- The main entry point is clearly documented
-- A permissive license is included for publishing
+This repo uses sample data, so it is a demo project rather than a live booking system.
